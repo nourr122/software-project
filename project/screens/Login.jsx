@@ -69,7 +69,37 @@ const Login = () => {
 };
 
  const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#714433",
+  },
+  input: {
+    height: 40,
+    width: "100%",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  link: {
+    marginTop: 10,
+    color: "#a1583e",
+    textDecorationLine: "underline",
+  },
+  error: {
+    marginTop: 10,
+    color: "#FF0000",
+  },
  });
 
  export default Login;
