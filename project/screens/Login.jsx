@@ -1,52 +1,26 @@
-import { router } from "expo-router";
+
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  TextInput,
-  Button,
-  Text,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { View, TextInput, Button, Text, Pressable, StyleSheet } from "react-native";
+import { router } from "expo-router";
 import { login } from "../firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import{ db, auth } from "../firebase/config";
-import {  signInWithEmailAndPassword } from "firebase/auth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+// import adminHome from "../Components/adminHome";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-
-  // useEffect(() => {
-  //   // console.log("auth().currentUser", auth.currentUser);
-  //   const unsub = onAuthStateChanged(auth, 
-  //     (user) => {
-  //       if(user){
-  //         AsyncStorage.setItem("user", JSON.stringify(user));
-  //         router.replace("/home");
-  //       }
-  //       else{
-  //         AsyncStorage.removeItem("user");
-  //         router.replace("/account/login");
-  //       }
-  //       // setUser(user)
-  //     });
-
-  //   return () => {
-  //     unsub();
-  //   };
-  // }, []);
-
   const handleLogin = async () => {
     try {
         const credentials =  await login(email, password);
         console.log('credentials', credentials);
-        router.navigate(`/home`);
-      const user = credentials.user;
+        if (email.includes('@admin')) {
+          // Navigate to the admin section
+          router.navigate(`account/AdminHome`);
+        } else {
+          // Navigate to the regular user section
+          router.navigate(`/home`);
+        }    
 
     } catch (error) {
       if(error.message.includes('auth/missing-password')) 
@@ -61,60 +35,41 @@ const Login = () => {
         console.log('error', JSON.stringify(error));
         
     }
-  };
+  }
   
 
-
-  
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Welcome Back!</Text>
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+        style={styles.input}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+        style={styles.input}
       />
-      <Pressable style={styles.btn} onPress={handleLogin} >
-      <Text style={{ flexDirection: "row", color: "white", fontSize: 15}}>Login</Text>
-        </Pressable>
-      <Pressable style={styles.btn} onPress={()=>router.replace("/account/register")}>
-      <Text style={{ flexDirection: "row", color: "white", fontSize: 15}}>Register</Text>
+      <Button title="Login" onPress={handleLogin} color="#a1583e" />
+      <Pressable onPress={() => router.replace("/account/register")}>
+        <Text style={styles.link}>Create an account</Text>
       </Pressable>
-      <Pressable onPress={()=>router.replace("/account/forgotpass")}>
-        <Text style={{ marginTop: 10 }}>Forgot Password</Text>
+      <Pressable onPress={() => router.replace("/account/forgotpass")}>
+        <Text style={styles.link}>Forgot Password?</Text>
       </Pressable>
-      <Text style={styles.err}>{error}</Text>
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    margin: 15,
-  },
-  err: {
-    marginTop: 10,
-    color: 'red',
-    fontSize: 20
-  },
-  btn: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: "#378ff2",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white"
-  }
-});
+ const styles = StyleSheet.create({
 
-export default Login;
+ });
+
+ export default Login;
