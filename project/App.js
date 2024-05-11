@@ -1,17 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Snacks from './Categories/Snacks';
+import ProductsList from './Components/ProductsList';
 import Register from './screens/Register';
 import Profile from './Components/profile';
+import Homee from './homeScreen/Homee';
+import CitiesList from './Components/dataList';
+import Navbarr from './homeScreen/Navbarr';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <Register/> */}
-      <Snacks/>
-      {/* <Profile /> */}
+      <Homee/>
       <StatusBar style="auto" />
+    
     </View>
+  
   );
 }
 
