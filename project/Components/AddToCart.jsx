@@ -28,11 +28,11 @@ const AddToCart = async (category, cart, setCart, quantity) => {
       return;
     }
 
-    // If quantity is less than 1, alert and return
-    // if (quantity < 1) {
-    //   alert("Out of stock");
-    //   return;
-    // }
+   // If quantity is less than 1, alert and return
+    if (quantity < 1) {
+      alert("Out of stock");
+      return;
+    }
 
     // Add the item to the cart collection
     await addDoc(collection(db, "cart"), category);
@@ -45,65 +45,5 @@ const AddToCart = async (category, cart, setCart, quantity) => {
     console.error("Error adding document to cart collection:", error);
   }
 };
-
-// const AddToCart = async (category, cart, setCart, quantity) => {
-//   const cartItemsFromStorage = await AsyncStorage.getItem('cart');
-//   const existingCart = cartItemsFromStorage ? JSON.parse(cartItemsFromStorage) : [];
-//   console.log("Existing Cart:", existingCart); 
-//   const productInCart = existingCart.find(({ title }) => title === category.title);
-
-//   if (productInCart) {
-//     alert("Product is already in the cart ");
-//     return;
-//   }
-//   else if(quantity < 1 ) {
-//     alert("Out of stock")
-//   }
-//   // Add the item to the cart
-//   const updatedCart = [...cart, category];
-//   setCart(updatedCart);
-
-//   try {
-//     await AsyncStorage.setItem('cart', JSON.stringify(updatedCart));
-//   //  console.log("Cart updated in AsyncStorage");
-//   } catch (error) {
-//   //  console.error("Error updating cart in AsyncStorage:", error);
-//   }
-
-//   try {
-//     await addDoc(collection(db, "cart"), category);
-//     console.log("Document added to cart collection:", category.title);
-//   } catch (error) {
-//     console.error("Error adding document to cart collection:", error);
-//   }
-// };
-
-// const AddToCart = async (category, cart, setCart, quantity) => {
-//    const productInCart = cart.find(({ title }) => title === category.title);
-//  // console.log("aaaaa", category.title);
-//  // console.log("Cart before:", cart);
-//  // const productInCart = cart.find(item => item.id === category.id);
-  
-//   // If the product is already in the cart, show a message and return
-//   if (productInCart) {
-//     alert("Product is already in the cart ");
-//     return;
-//   } else if (quantity < 1) {
-//     alert("Out of stock")
-//     return;
-//   }
-
-//   // Add the item to the cart
-//   const updatedCart = [...cart, category];
-//   setCart(updatedCart);
-
-//   try {
-//     await addDoc(collection(db, "cart"), category);
-//     console.log("Document added to cart collection:", category.title);
-//   } catch (error) {
-//     console.error("Error adding document to cart collection:", error);
-//   }
- 
-// };
 
 export default AddToCart;
