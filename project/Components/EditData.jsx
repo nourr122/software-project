@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, TextInput, Pressable, Button } from 'react-nati
 import NewHeader from '../homeScreen/NewHeader'
 import { updateDataByTitle } from '../firebase/data'
 import Navbarr from '../homeScreen/Navbarr'
+import { router, useLocalSearchParams } from 'expo-router';
+
 
 const EditData = () => {
   const [title, setTitle] = useState('');
@@ -30,6 +32,10 @@ const EditData = () => {
 
   return (
     <View style={styles.container}>
+       <Pressable style={styles.backButton} onPress={(() =>  router.replace('/account/AdminHome') )}>
+        {/* <Text style={styles.backButtonText}>Back</Text> */}
+        <Image source={require('../assets/left-arrow.png')} style={{width:50, height: 50}} />
+      </Pressable>
       <NewHeader />
       <Navbarr />
 
