@@ -4,7 +4,6 @@ import ProductsList from './Components/ProductsList';
 import Register from './screens/Register';
 import Profile from './Components/profile';
 import Homee from './homeScreen/Homee';
-import CitiesList from './Components/dataList';
 import Navbarr from './homeScreen/Navbarr';
 
 export default function App() {
