@@ -7,13 +7,13 @@ import { getApps } from "firebase/app";
 import { getApp } from "firebase/app";
 
 const firebaseConfig = {
- apiKey: "AIzaSyCYsNiq4YQ_valnkAirJ9HP7usCEYJqyv4",
-  authDomain: "local-grocer-7487a.firebaseapp.com",
-  projectId: "local-grocer-7487a",
-  storageBucket: "local-grocer-7487a.appspot.com",
-  messagingSenderId: "910146713487",
-  appId: "1:910146713487:web:0bc37f54e89214f680fdfa",
-  measurementId: "G-KW954GLPYP"
+  apiKey: "AIzaSyBYomc4_yge6LkrnCjqL8OcG3xYKNoG78Y",
+  authDomain: "software-project-523c8.firebaseapp.com",
+  databaseURL: "https://software-project-523c8-default-rtdb.firebaseio.com",
+  projectId: "software-project-523c8",
+  storageBucket: "software-project-523c8.appspot.com",
+  messagingSenderId: "359592144028",
+  appId: "1:359592144028:web:307a49bd93c58369135159"
 };
 
 const app = getApps.length > 0 ? getApp():
