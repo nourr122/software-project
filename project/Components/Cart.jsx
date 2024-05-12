@@ -2,7 +2,6 @@ import React, { useCallback, useState, useEffect } from "react";
 import { FlatList, StyleSheet, Text, TextInput, View, ActivityIndicator, Alert, Pressable, TouchableOpacity, Image, Button, TouchableOpacityBase } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Snacks from "../Categories/Snacks";
 import { FontAwesome } from '@expo/vector-icons'; 
 import {
   getDocs,
